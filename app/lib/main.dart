@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //Widgets
-import './widgets/login.dart';
+import 'pages/login.dart';
 
 //Utils
 import './util/colors/createMaterialColor.dart';
