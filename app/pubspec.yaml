@@ -50,7 +50,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - assets/
+    - lib/themes/images/pogChampLogo/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -77,3 +77,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  fonts:
+    - family: PoppinsMedium
+      fonts:
+        - asset: lib/themes/fonts/poppins/Poppins-Medium.ttf

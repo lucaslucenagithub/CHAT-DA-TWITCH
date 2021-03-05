@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 //Widgets
-import '../widgets/buttons/simple.dart';
+import '../widgets/buttons/simpleButton.dart';
+
+//Themes
+import '../themes/colors/index.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -29,25 +32,29 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                Image(image: AssetImage('assets/nwhat_emote.png')),
-                Text('Chat da Twitch',
+                Image(
+                    image: AssetImage(
+                        'lib/themes/images/pogChampLogo/twitch-pogchamp-emote.png')),
+                Text('PogChat',
                     style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
+                        fontSize: 35,
+                        fontFamily: "PoppinsMedium",
+                        color: Color(TwitchChatColors.WHITE_1))),
                 Container(
                   margin: EdgeInsets.all(90),
                 ),
                 SimpleButton(
-                    message: 'Login with your twitch account',
-                    color: Color(0xFF6441a5)),
+                    message: 'Join', color: Color(TwitchChatColors.WHITE_1)),
               ],
               mainAxisAlignment: MainAxisAlignment.center,
             ),
             Container(
                 child: Text(
-                  'Made by the community and has no incentives by twitch',
-                  style: (TextStyle(color: Colors.white, fontSize: 12)),
+                  'Made by the community and has no incentives by anyone',
+                  style: (TextStyle(
+                      color: Color(TwitchChatColors.WHITE_1),
+                      fontSize: 10,
+                      fontFamily: "PoppinsMedium")),
                 ),
                 padding: EdgeInsets.only(left: 50, right: 50),
                 margin: EdgeInsets.only(bottom: 20),
@@ -55,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      backgroundColor: new Color(0xFF6441a5),
+      backgroundColor: new Color(TwitchChatColors.PURPLE_1),
     );
   }
 }

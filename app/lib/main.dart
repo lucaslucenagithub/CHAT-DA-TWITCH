@@ -6,6 +6,9 @@ import 'pages/login.dart';
 //Utils
 import './util/colors/createMaterialColor.dart';
 
+//Themes
+import './themes/colors/index.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: createMaterialColor(new Color(0xFF6441a5)),
+        primarySwatch: createMaterialColor(Color(TwitchChatColors.PURPLE_1)),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Navigator(
