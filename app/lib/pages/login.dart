@@ -6,6 +6,9 @@ import '../widgets/buttons/simpleButton.dart';
 //Themes
 import '../themes/colors/index.dart';
 
+//Services
+import '../services/twitchService/twitchAuthService.dart';
+
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
 
@@ -16,12 +19,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  int _counter = 0;
+  void _twitchAuthenticate() async {
+    try {
+      var redirectPageAddress = getUserAuthenticationAddress();
+      print(redirectPageAddress);
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+      //TODO: deep link redirectPageAddress with twitch app and
+      //return the result in a callback function
+
+      //TODO: if first time, save user info to netlify servless fn
+      //TODO: if sucess, go to home page
+    } catch (e) {
+      //TODO: open modal with error
+    }
   }
 
   @override
@@ -43,17 +53,20 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   margin: EdgeInsets.all(90),
                 ),
+                //TODO: create a button with twitch icon
                 SimpleButton(
-                    message: 'Join', color: Color(TwitchChatColors.WHITE_1)),
+                    onPressed: _twitchAuthenticate,
+                    message: 'Join with your Twitch account',
+                    color: Color(TwitchChatColors.WHITE_1)),
               ],
               mainAxisAlignment: MainAxisAlignment.center,
             ),
             Container(
                 child: Text(
-                  'Made by the community and has no incentives by anyone',
+                  'Made by the community and has no privates incentives',
                   style: (TextStyle(
                       color: Color(TwitchChatColors.WHITE_1),
-                      fontSize: 10,
+                      fontSize: 11,
                       fontFamily: "PoppinsMedium")),
                 ),
                 padding: EdgeInsets.only(left: 50, right: 50),
