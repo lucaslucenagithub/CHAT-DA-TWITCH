@@ -9,6 +9,12 @@ import '../themes/colors/index.dart';
 //Services
 import '../services/twitchService/twitchAuthService.dart';
 
+//Models
+import '../models/token.dart';
+
+//Pages
+import './oAuth.dart';
+
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
 
@@ -19,18 +25,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  void _twitchAuthenticate() async {
+  void _twitchAuthenticate(BuildContext context) async {
     try {
-      var redirectPageAddress = getUserAuthenticationAddress();
-      print(redirectPageAddress);
+      final TwitchAuthService twitchService = TwitchAuthService();
 
-      //TODO: deep link redirectPageAddress with twitch app and
-      //return the result in a callback function
+      final Token token = await Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => OAuthPage(
+                    webPageUrl: twitchService.getUserAuthenticationAddress(),
+                    getAccessToken: twitchService.getAccessToken,
+                  )));
 
-      //TODO: if first time, save user info to netlify servless fn
-      //TODO: if sucess, go to home page
+      print(token);
     } catch (e) {
-      //TODO: open modal with error
+      print(e);
     }
   }
 
@@ -55,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 //TODO: create a button with twitch icon
                 SimpleButton(
-                    onPressed: _twitchAuthenticate,
+                    onPressed: () => _twitchAuthenticate(context),
                     message: 'Join with your Twitch account',
                     color: Color(TwitchChatColors.WHITE_1)),
               ],
