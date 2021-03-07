@@ -8,6 +8,7 @@ import '../themes/colors/index.dart';
 
 //Services
 import '../services/twitchService/twitchAuthService.dart';
+import '../services/twitchService/twitchUserService.dart';
 
 //Models
 import '../models/token.dart';
@@ -36,6 +37,8 @@ class _LoginPageState extends State<LoginPage> {
                     webPageUrl: twitchService.getUserAuthenticationAddress(),
                     getAccessToken: twitchService.getAccessToken,
                   )));
+
+      //TODO: use twitch user service to save user in database
 
       print(token);
     } catch (e) {

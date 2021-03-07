@@ -30,7 +30,6 @@ class TwitchAuthService {
     if (response.statusCode == HttpStatus.ok) {
       // NOTE we'd typically deserialize JSON properly here
       final token = Token(respMap['access_token'], respMap['refresh_token']);
-      print('token model $token');
       return Future.value(token);
     } else {
       print("error is ${respMap['error']}");
