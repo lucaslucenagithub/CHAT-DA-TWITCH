@@ -1,6 +1,8 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:app/pages/home.dart';
-import 'package:app/services/secureStorage.dart';
+import 'package:app/services/localStorageService.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'pages/login.dart';
 import './util/colors/createMaterialColor.dart';
@@ -15,8 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<SecureStorage>(
-          create: (context) => SecureStorage(),
+        ChangeNotifierProvider<LocalStorageService>(
+          create: (context) => LocalStorageService(),
         ),
       ],
       child: MaterialApp(
@@ -26,7 +28,15 @@ class MyApp extends StatelessWidget {
                 createMaterialColor(Color(TwitchChatColors.PURPLE_1)),
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: AuthenticationWrapper()),
+          home: AnimatedSplashScreen(
+            splash: Image.asset(
+              'lib/themes/images/pogChampLogo/twitch-pogchamp-emote.png',
+            ),
+            splashTransition: SplashTransition.rotationTransition,
+            nextScreen: AuthenticationWrapper(),
+            pageTransitionType: PageTransitionType.fade,
+            backgroundColor: new Color(TwitchChatColors.PURPLE_1),
+          )),
     );
   }
 }
@@ -43,7 +53,7 @@ class _AuthenticationWrapper extends State<AuthenticationWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    final storage = Provider.of<SecureStorage>(context);
+    final storage = Provider.of<LocalStorageService>(context);
 
     return FutureBuilder(
         future: storage.readSecureData('oauth'),

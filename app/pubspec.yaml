@@ -25,9 +25,10 @@ dependencies:
     sdk: flutter
   http: ^0.13.0
   flutter_webview_plugin: ^0.3.11
-  flutter_secure_storage: ^4.1.0
   provider: ^5.0.0
   shared_preferences: ^2.0.5
+  animated_splash_screen: ^1.1.0
+  page_transition: ^2.0.1-nullsafety.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -54,6 +55,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
+    - lib/themes/images/
     - lib/themes/images/pogChampLogo/
 
   # An image asset can refer to one or more resolution-specific "variants", see

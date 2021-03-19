@@ -1,4 +1,4 @@
-import 'package:app/services/secureStorage.dart';
+import 'package:app/services/localStorageService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/buttons/simpleButton.dart';
@@ -19,7 +19,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final storage = Provider.of<SecureStorage>(context);
+    final storage = Provider.of<LocalStorageService>(context);
 
     void _twitchAuthenticate() async {
       try {

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SecureStorage with ChangeNotifier {
+class LocalStorageService with ChangeNotifier {
   Future<String> readSecureData(String key) async {
     final _storage = await SharedPreferences.getInstance();
     String result = _storage.getString(key);

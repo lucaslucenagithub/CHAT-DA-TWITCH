@@ -1,4 +1,4 @@
-import 'package:app/services/secureStorage.dart';
+import 'package:app/services/localStorageService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final storage = Provider.of<SecureStorage>(context);
+    final storage = Provider.of<LocalStorageService>(context);
     return DefaultTabController(
       length: 4,
       child: Scaffold(
