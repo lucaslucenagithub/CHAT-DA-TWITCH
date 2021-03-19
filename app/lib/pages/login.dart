@@ -1,19 +1,10 @@
+import 'package:app/services/secureStorage.dart';
 import 'package:flutter/material.dart';
-
-//Widgets
+import 'package:provider/provider.dart';
 import '../widgets/buttons/simpleButton.dart';
-
-//Themes
 import '../themes/colors/index.dart';
-
-//Services
 import '../services/twitchService/twitchAuthService.dart';
-import '../services/twitchService/twitchUserService.dart';
-
-//Models
 import '../models/token.dart';
-
-//Pages
 import './oAuth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -26,28 +17,31 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  void _twitchAuthenticate(BuildContext context) async {
-    try {
-      final TwitchAuthService twitchService = TwitchAuthService();
-
-      final Token token = await Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => OAuthPage(
-                    webPageUrl: twitchService.getUserAuthenticationAddress(),
-                    getAccessToken: twitchService.getAccessToken,
-                  )));
-
-      //TODO: use twitch user service to save user in database
-
-      print(token);
-    } catch (e) {
-      print(e);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final storage = Provider.of<SecureStorage>(context);
+
+    void _twitchAuthenticate() async {
+      try {
+        final TwitchAuthService twitchService = TwitchAuthService();
+
+        final Token token = await Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => OAuthPage(
+                      webPageUrl: twitchService.getUserAuthenticationAddress(),
+                      getAccessToken: twitchService.getAccessToken,
+                    )));
+
+        await storage.writeSecureData('oauth', token.accessToken);
+
+        //TODO: use twitch user service to save user in database
+
+      } catch (e) {
+        print(e);
+      }
+    }
+
     return Scaffold(
       body: Center(
         child: Stack(
@@ -67,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 //TODO: create a button with twitch icon
                 SimpleButton(
-                    onPressed: () => _twitchAuthenticate(context),
+                    onPressed: () => _twitchAuthenticate(),
                     message: 'Join with your Twitch account',
                     color: Color(TwitchChatColors.WHITE_1)),
               ],
@@ -81,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 11,
                       fontFamily: "PoppinsMedium")),
                 ),
-                padding: EdgeInsets.only(left: 50, right: 50),
+                padding: EdgeInsets.only(left: 25, right: 25),
                 margin: EdgeInsets.only(bottom: 20),
                 alignment: Alignment.bottomCenter)
           ],
