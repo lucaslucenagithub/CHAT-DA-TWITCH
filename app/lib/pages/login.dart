@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      backgroundColor: new Color(TwitchChatColors.PURPLE_1),
+      backgroundColor: Color(TwitchChatColors.PURPLE_1),
     );
   }
 }

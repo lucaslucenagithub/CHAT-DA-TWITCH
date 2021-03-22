@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:app/pages/home.dart';
+import 'package:app/pages/tabs.dart';
 import 'package:app/services/localStorageService.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -49,16 +50,14 @@ class AuthenticationWrapper extends StatefulWidget {
 }
 
 class _AuthenticationWrapper extends State<AuthenticationWrapper> {
-  String userToken;
-
   @override
   Widget build(BuildContext context) {
     final storage = Provider.of<LocalStorageService>(context);
 
     return FutureBuilder(
         future: storage.readSecureData('oauth'),
-        builder: (BuildContext context, AsyncSnapshot<String> text) {
-          return text.data != null ? HomePage() : LoginPage();
+        builder: (BuildContext context, AsyncSnapshot<String> token) {
+          return token.data != null ? TabsPage() : LoginPage();
         });
   }
 }
