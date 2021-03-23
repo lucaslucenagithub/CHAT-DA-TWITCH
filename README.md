@@ -1,5 +1,6 @@
-# CHAT-DA-TWITCH
+# PogChat
 
+# PT-BR
 ## Geral
 
 **HOME**
@@ -19,3 +20,7 @@ Administração do perfil:
 - **Edit Profile:** editar preferências, fotos, etc.
 - **Settings:** editar configurações da aplicação, por exemplo, aparecer atualizações de foto no feed? Invisibilidade do perfil? Etc.
 - **Logout:** sair do aplicativo.
+
+# EN-US
+
+## General...
