@@ -57,6 +57,7 @@ flutter:
   assets:
     - lib/themes/images/
     - lib/themes/images/pogChampLogo/
+    - lib/themes/images/mocks/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

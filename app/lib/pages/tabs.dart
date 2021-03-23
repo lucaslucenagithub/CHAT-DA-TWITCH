@@ -1,3 +1,4 @@
+import 'package:app/pages/profile.dart';
 import 'package:app/services/localStorageService.dart';
 import 'package:app/themes/colors/index.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,14 +18,8 @@ class _HomeState extends State<TabsPage> {
   static List<Widget> Function(dynamic) _widgetOptions = (storage) => <Widget>[
         Icon(Icons.home),
         Icon(Icons.explore),
-        Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              await storage.deleteSecureData('oauth');
-            },
-            child: Text('Log out'),
-          ),
-        )
+        Icon(Icons.nightlife),
+        ProfilePage(storage: storage)
       ];
 
   void _onItemTapped(int index) {
@@ -37,6 +32,7 @@ class _HomeState extends State<TabsPage> {
   Widget build(BuildContext context) {
     final storage = Provider.of<LocalStorageService>(context);
     return Scaffold(
+      backgroundColor: Color(TwitchChatColors.WHITE_1),
       body: Center(
         child: _widgetOptions(storage).elementAt(_selectedIndex),
       ),
@@ -51,6 +47,10 @@ class _HomeState extends State<TabsPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
             label: 'Discover',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.nightlife),
+            label: 'Parties',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.picture_in_picture),

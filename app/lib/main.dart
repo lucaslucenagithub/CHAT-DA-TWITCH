@@ -1,5 +1,4 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:app/pages/home.dart';
 import 'package:app/pages/tabs.dart';
 import 'package:app/services/localStorageService.dart';
 import 'package:flutter/material.dart';

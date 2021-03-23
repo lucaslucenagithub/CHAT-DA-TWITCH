@@ -43,45 +43,44 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     return Scaffold(
-      body: Center(
-        child: Stack(
+      backgroundColor: Color(TwitchChatColors.PURPLE_1),
+      body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Column(
-              children: <Widget>[
-                Image(
-                    image: AssetImage(
-                        'lib/themes/images/pogChampLogo/twitch-pogchamp-emote.png')),
-                Text('PogChat',
-                    style: TextStyle(
-                        fontSize: 35,
-                        fontFamily: "PoppinsMedium",
-                        color: Color(TwitchChatColors.WHITE_1))),
-                Container(
-                  margin: EdgeInsets.all(90),
-                ),
-                //TODO: create a button with twitch icon
-                SimpleButton(
-                    onPressed: () => _twitchAuthenticate(),
-                    message: 'Join with your Twitch account',
-                    color: Color(TwitchChatColors.WHITE_1)),
-              ],
-              mainAxisAlignment: MainAxisAlignment.center,
+            Image(
+                image: AssetImage(
+                    'lib/themes/images/pogChampLogo/twitch-pogchamp-emote.png')),
+            Text('PogChat',
+                style: TextStyle(
+                    fontSize: 35,
+                    fontFamily: "PoppinsMedium",
+                    color: Color(TwitchChatColors.WHITE_1))),
+            SizedBox(
+              height: 90,
             ),
-            Container(
-                child: Text(
-                  'Made by the community and has no privates incentives',
-                  style: (TextStyle(
-                      color: Color(TwitchChatColors.WHITE_1),
-                      fontSize: 11,
-                      fontFamily: "PoppinsMedium")),
-                ),
-                padding: EdgeInsets.only(left: 25, right: 25),
-                margin: EdgeInsets.only(bottom: 20),
-                alignment: Alignment.bottomCenter)
+            //TODO: create a button with twitch icon
+            SimpleButton(
+                onPressed: () => _twitchAuthenticate(),
+                message: 'Join with your Twitch account',
+                color: Color(TwitchChatColors.WHITE_1)),
           ],
         ),
-      ),
-      backgroundColor: Color(TwitchChatColors.PURPLE_1),
+        SizedBox(
+          height: 80,
+        ),
+        Container(
+            child: Text(
+              'Made by the community and has no privates incentives',
+              style: (TextStyle(
+                  color: Color(TwitchChatColors.WHITE_1),
+                  fontSize: 11,
+                  fontFamily: "PoppinsMedium")),
+            ),
+            padding: EdgeInsets.only(left: 25, right: 25),
+            margin: EdgeInsets.only(bottom: 20),
+            alignment: Alignment.bottomCenter)
+      ]),
     );
   }
 }
